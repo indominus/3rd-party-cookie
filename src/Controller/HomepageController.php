@@ -24,7 +24,7 @@ class HomepageController extends AbstractController
     public function index(Request $request, SessionInterface $session): JsonResponse
     {
 
-        $session->set(self::COOKIE_NAME, true);
+        $session->set(self::COOKIE_NAME, 1);
 
         $token = bin2hex(openssl_random_pseudo_bytes(32));
 
@@ -40,7 +40,7 @@ class HomepageController extends AbstractController
     public function form(Request $request, SessionInterface $session): Response
     {
 
-        if (null === $session->get(self::COOKIE_NAME, null)) {
+        if (null === $session->get(self::COOKIE_NAME)) {
             return new Response('Missing required parameters.');
         }
 
